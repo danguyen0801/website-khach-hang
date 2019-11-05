@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thống kê doanh số</title>
+    <% include ./../elements/head %>
+    <script>
+            window.onload = function () {
+            
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                zoomEnabled: true,
+                theme: "dark2",
+                title:{
+                    text: "Doanh số bán hàng qua các năm"
+                },
+                axisX:{
+                    title: "Năm",
+                    valueFormatString: "####",
+                    interval: 2
+                },
+                axisY:{
+                    logarithmic: true, //change it to false
+                    title: "",
+                    prefix: "$",
+                    titleFontColor: "#6D78AD",
+                    lineColor: "#6D78AD",
+                    gridThickness: 0,
+                    lineThickness: 1,
+                    //includeZero: false,
+                    labelFormatter: addSymbols
+                },
+                axisY2:{
+                    title: "",
+                    prefix: "$",
+                    titleFontColor: "#51CDA0",
+                    logarithmic: false, //change it to true
+                    lineColor: "#51CDA0",
+                    gridThickness: 0,
+                    lineThickness: 1,
+                    labelFormatter: addSymbols
+                },
+                legend:{
+                    verticalAlign: "top",
+                    fontSize: 16,
+                    dockInsidePlotArea: true
+                },
+                data: [{
+                    type: "line",
+                    xValueFormatString: "####",
+                    yValueFormatString: "$#,##0.##",
+                    showInLegend: true,
+                    name: "Doanh số ngoài nước",
+                    dataPoints: [
+                        { x: 2001, y: 8000 },
+                        { x: 2002, y: 20000 },
+                        { x: 2003, y: 40000 },
+                        { x: 2004, y: 60000 },
+                        { x: 2005, y: 90000 },
+                        { x: 2006, y: 140000 },
+                        { x: 2007, y: 200000 },
+                        { x: 2008, y: 400000 },
+                        { x: 2009, y: 600000 },
+                        { x: 2010, y: 800000 },
+                        { x: 2011, y: 900000 },
+                        { x: 2012, y: 1400000 }, 
+                        { x: 2013, y: 2000000 }, 
+                        { x: 2014, y: 4000000 }, 
+                        { x: 2015, y: 6000000 }, 
+                        { x: 2016, y: 8000000 }, 
+                        { x: 2017, y: 9000000 }
+                    ]
+                },
+                {
+                    type: "line",
+                    xValueFormatString: "####",
+                    yValueFormatString: "$#,##0.##",
+                    axisYType: "secondary",
+                    showInLegend: true,
+                    name: "Doanh số trong nước",
+                    dataPoints: [
+                        { x: 2001, y: 8000 },
+                        { x: 2002, y: 20000 },
+                        { x: 2003, y: 40000 },
+                        { x: 2004, y: 60000 },
+                        { x: 2005, y: 90000 },
+                        { x: 2006, y: 140000 },
+                        { x: 2007, y: 200000 },
+                        { x: 2008, y: 400000 },
+                        { x: 2009, y: 600000 },
+                        { x: 2010, y: 800000 },
+                        { x: 2011, y: 900000 },
+                        { x: 2012, y: 1400000 }, 
+                        { x: 2013, y: 2000000 }, 
+                        { x: 2014, y: 4000000 }, 
+                        { x: 2015, y: 6000000 }, 
+                        { x: 2016, y: 8000000 }, 
+                        { x: 2017, y: 9000000 }
+                    ]
+                }]
+            });
+            chart.render();
+            var chart1 = new CanvasJS.Chart("chartContainer1", {
+                animationEnabled: true,
+                zoomEnabled: true,
+                theme: "dark2",
+                title:{
+                    text: "Doanh số bán hàng qua các quý"
+                },
+                axisX:{
+                    title: "Quý",
+                    valueFormatString: "####",
+                    interval: 2
+                },
+                axisY:{
+                    logarithmic: true, //change it to false
+                    title: "",
+                    prefix: "$",
+                    titleFontColor: "#6D78AD",
+                    lineColor: "#6D78AD",
+                    gridThickness: 0,
+                    lineThickness: 1,
+                    //includeZero: false,
+                    labelFormatter: addSymbols
+                },
+                axisY2:{
+                    title: "",
+                    prefix: "$",
+                    titleFontColor: "#51CDA0",
+                    logarithmic: false, //change it to true
+                    lineColor: "#51CDA0",
+                    gridThickness: 0,
+                    lineThickness: 1,
+                    labelFormatter: addSymbols
+                },
+                legend:{
+                    verticalAlign: "top",
+                    fontSize: 16,
+                    dockInsidePlotArea: true
+                },
+                data: [{
+                    type: "line",
+                    xValueFormatString: "####",
+                    yValueFormatString: "$#,##0.##",
+                    showInLegend: true,
+                    name: "Doanh số ngoài nước",
+                    dataPoints: [
+                        { x: 1, y: 8000 },
+                        { x: 2, y: 20000 },
+                        { x: 3, y: 40000 },
+                        { x: 4, y: 60000 },
+                        
+                    ]
+                },
+                {
+                    type: "line",
+                    xValueFormatString: "####",
+                    yValueFormatString: "$#,##0.##",
+                    axisYType: "secondary",
+                    showInLegend: true,
+                    name: "Doanh số trong nước",
+                    dataPoints: [
+                        { x: 1, y: 8000 },
+                        { x: 2, y: 20000 },
+                        { x: 3, y: 40000 },
+                        { x: 4, y: 60000 },
+                       
+                    ]
+                }]
+            });
+            chart1.render();
+            
+            var chart2 = new CanvasJS.Chart("chartContainer2", {
+                animationEnabled: true,
+                zoomEnabled: true,
+                theme: "dark2",
+                title:{
+                    text: "Doanh số bán hàng qua các tháng"
+                },
+                axisX:{
+                    title: "Tháng",
+                    valueFormatString: "####",
+                    interval: 2
+                },
+                axisY:{
+                    logarithmic: true, //change it to false
+                    title: "",
+                    prefix: "$",
+                    titleFontColor: "#6D78AD",
+                    lineColor: "#6D78AD",
+                    gridThickness: 0,
+                    lineThickness: 1,
+                    //includeZero: false,
+                    labelFormatter: addSymbols
+                },
+                axisY2:{
+                    title: "",
+                    prefix: "$",
+                    titleFontColor: "#51CDA0",
+                    logarithmic: false, //change it to true
+                    lineColor: "#51CDA0",
+                    gridThickness: 0,
+                    lineThickness: 1,
+                    labelFormatter: addSymbols
+                },
+                legend:{
+                    verticalAlign: "top",
+                    fontSize: 16,
+                    dockInsidePlotArea: true
+                },
+                data: [{
+                    type: "line",
+                    xValueFormatString: "####",
+                    yValueFormatString: "$#,##0.##",
+                    showInLegend: true,
+                    name: "Doanh số ngoài nước",
+                    dataPoints: [
+                        { x: 1, y: 8000 },
+                        { x: 2, y: 20000 },
+                        { x: 3, y: 40000 },
+                        { x: 4, y: 60000 },
+                        { x: 5, y: 90000 },
+                        { x: 6, y: 140000 },
+                        { x: 7, y: 200000 },
+                        { x: 8, y: 400000 },
+                        { x: 9, y: 600000 },
+                        { x: 10, y: 800000 },
+                        { x: 11, y: 900000 },
+                        { x: 12, y: 1400000 }, 
+                        
+                    ]
+                },
+                {
+                    type: "line",
+                    xValueFormatString: "####",
+                    yValueFormatString: "$#,##0.##",
+                    axisYType: "secondary",
+                    showInLegend: true,
+                    name: "Doanh số trong nước",
+                    dataPoints: [
+                        { x: 1, y: 8000 },
+                        { x: 2, y: 20000 },
+                        { x: 3, y: 40000 },
+                        { x: 4, y: 60000 },
+                        { x: 5, y: 90000 },
+                        { x: 6, y: 140000 },
+                        { x: 7, y: 200000 },
+                        { x: 8, y: 400000 },
+                        { x: 9, y: 600000 },
+                        { x: 10, y: 800000 },
+                        { x: 11, y: 900000 },
+                        { x: 12, y: 1400000 }, 
+                        
+                    ]
+                }]
+            });
+            chart2.render();
+           
+            var chart3 = new CanvasJS.Chart("chartContainer3", {
+                animationEnabled: true,
+                zoomEnabled: true,
+                theme: "dark2",
+                title:{
+                    text: "Doanh số bán hàng qua các tuần"
+                },
+                axisX:{
+                    title: "Tuần",
+                    valueFormatString: "####",
+                    interval: 2
+                },
+                axisY:{
+                    logarithmic: true, //change it to false
+                    title: "",
+                    prefix: "$",
+                    titleFontColor: "#6D78AD",
+                    lineColor: "#6D78AD",
+                    gridThickness: 0,
+                    lineThickness: 1,
+                    //includeZero: false,
+                    labelFormatter: addSymbols
+                },
+                axisY2:{
+                    title: "",
+                    prefix: "$",
+                    titleFontColor: "#51CDA0",
+                    logarithmic: false, //change it to true
+                    lineColor: "#51CDA0",
+                    gridThickness: 0,
+                    lineThickness: 1,
+                    labelFormatter: addSymbols
+                },
+                legend:{
+                    verticalAlign: "top",
+                    fontSize: 16,
+                    dockInsidePlotArea: true
+                },
+                data: [{
+                    type: "line",
+                    xValueFormatString: "####",
+                    yValueFormatString: "$#,##0.##",
+                    showInLegend: true,
+                    name: "Doanh số ngoài nước",
+                    dataPoints: [
+                        { x: 1, y: 8000 },
+                        { x: 2, y: 20000 },
+                        { x: 3, y: 40000 },
+                        { x: 4, y: 60000 },
+                        { x: 5, y: 90000 },
+                        { x: 6, y: 140000 },
+                        { x: 7, y: 200000 },
+                        { x: 8, y: 400000 },
+                        { x: 9, y: 600000 },
+                        { x: 10, y: 800000 },
+                        { x: 11, y: 900000 },
+                        { x: 12, y: 1400000 }, 
+                        
+                    ]
+                },
+                {
+                    type: "line",
+                    xValueFormatString: "####",
+                    yValueFormatString: "$#,##0.##",
+                    axisYType: "secondary",
+                    showInLegend: true,
+                    name: "Doanh số trong nước",
+                    dataPoints: [
+                        { x: 1, y: 8000 },
+                        { x: 2, y: 20000 },
+                        { x: 3, y: 40000 },
+                        { x: 4, y: 60000 },
+                        { x: 5, y: 90000 },
+                        { x: 6, y: 140000 },
+                        { x: 7, y: 200000 },
+                        { x: 8, y: 400000 },
+                        { x: 9, y: 600000 },
+                        { x: 10, y: 800000 },
+                        { x: 11, y: 900000 },
+                        { x: 12, y: 1400000 }, 
+                        
+                    ]
+                }]
+            });
+            chart3.render();
+            var chart4 = new CanvasJS.Chart("chartContainer4", {
+                animationEnabled: true,
+                zoomEnabled: true,
+                theme: "dark2",
+                title:{
+                    text: "Doanh số bán hàng qua các ngày"
+                },
+                axisX:{
+                    title: "Ngày",
+                    valueFormatString: "####",
+                    interval: 2
+                },
+                axisY:{
+                    logarithmic: true, //change it to false
+                    title: "",
+                    prefix: "$",
+                    titleFontColor: "#6D78AD",
+                    lineColor: "#6D78AD",
+                    gridThickness: 0,
+                    lineThickness: 1,
+                    //includeZero: false,
+                    labelFormatter: addSymbols
+                },
+                axisY2:{
+                    title: "",
+                    prefix: "$",
+                    titleFontColor: "#51CDA0",
+                    logarithmic: false, //change it to true
+                    lineColor: "#51CDA0",
+                    gridThickness: 0,
+                    lineThickness: 1,
+                    labelFormatter: addSymbols
+                },
+                legend:{
+                    verticalAlign: "top",
+                    fontSize: 16,
+                    dockInsidePlotArea: true
+                },
+                data: [{
+                    type: "line",
+                    xValueFormatString: "####",
+                    yValueFormatString: "$#,##0.##",
+                    showInLegend: true,
+                    name: "Doanh số ngoài nước",
+                    dataPoints: [
+                        { x: 1, y: 8000 },
+                        { x: 2, y: 20000 },
+                        { x: 3, y: 40000 },
+                        { x: 4, y: 60000 },
+                        { x: 5, y: 90000 },
+                        { x: 6, y: 140000 },
+                        { x: 7, y: 200000 },
+                        { x: 8, y: 400000 },
+                        { x: 9, y: 600000 },
+                        { x: 10, y: 800000 },
+                        { x: 11, y: 900000 },
+                        { x: 12, y: 1400000 }, 
+                        { x: 13, y: 40000 },
+                        { x: 14, y: 60000 },
+                        { x: 15, y: 90000 },
+                        { x: 16, y: 140000 },
+                        { x: 17, y: 200000 },
+                        { x: 18, y: 400000 },
+                        { x: 19, y: 600000 },
+                        { x: 20, y: 800000 },
+                        { x: 21, y: 900000 },
+                        { x: 22, y: 1400000 }, 
+                        { x: 23, y: 40000 },
+                        { x: 24, y: 60000 },
+                        { x: 25, y: 90000 },
+                        { x: 26, y: 140000 },
+                        { x: 27, y: 200000 },
+                        { x: 28, y: 400000 },
+                        { x: 29, y: 600000 },
+                        { x: 30, y: 800000 },
+                        
+                        
+                        
+                    ]
+                },
+                {
+                    type: "line",
+                    xValueFormatString: "####",
+                    yValueFormatString: "$#,##0.##",
+                    axisYType: "secondary",
+                    showInLegend: true,
+                    name: "Doanh số bán hàng trong nước",
+                    dataPoints: [
+                        { x: 1, y: 8000 },
+                        { x: 2, y: 20000 },
+                        { x: 3, y: 40000 },
+                        { x: 4, y: 60000 },
+                        { x: 5, y: 90000 },
+                        { x: 6, y: 140000 },
+                        { x: 7, y: 200000 },
+                        { x: 8, y: 400000 },
+                        { x: 9, y: 600000 },
+                        { x: 10, y: 800000 },
+                        { x: 11, y: 900000 },
+                        { x: 12, y: 1400000 }, 
+                        
+                    ]
+                }]
+            });
+            chart4.render();
+            function addSymbols(e){
+                var suffixes = ["", "K", "M", "B"];
+            
+                var order = Math.max(Math.floor(Math.log(e.value) / Math.log(1000)), 0);
+                if(order > suffixes.length - 1)
+                    order = suffixes.length - 1;
+            
+                var suffix = suffixes[order];
+                return CanvasJS.formatNumber(e.value / Math.pow(1000, order)) + suffix;
+            }
+            
+            }
+            </script>        
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <% include ./../elements/header %>
+ 
+  <!-- Left side column. contains the logo and sidebar -->
+  <% include ./../elements/sidebar %>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+       Thống kê doanh số
+        
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <!--content-->
+        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+        <div id="chartContainer1" style="height: 300px; width: 100%;"></div>
+        <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
+        <div id="chartContainer3" style="height: 300px; width: 100%;"></div>
+        <div id="chartContainer4" style="height: 300px; width: 100%;"></div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <% include ./../elements/footer %>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark" style="display: none;">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+      <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <!-- Home tab content -->
+      <div class="tab-pane" id="control-sidebar-home-tab">
+        <h3 class="control-sidebar-heading">Recent Activity</h3>
+        <ul class="control-sidebar-menu">
+          <li>
+            <a href="javascript:void(0)">
+              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                <p>Will be 23 on April 24th</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="menu-icon fa fa-user bg-yellow"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+
+                <p>New phone +1(800)555-1234</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+
+                <p>nora@example.com</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="menu-icon fa fa-file-code-o bg-green"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+
+                <p>Execution time 5 seconds</p>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!-- /.control-sidebar-menu -->
+
+        <h3 class="control-sidebar-heading">Tasks Progress</h3>
+        <ul class="control-sidebar-menu">
+          <li>
+            <a href="javascript:void(0)">
+              <h4 class="control-sidebar-subheading">
+                Custom Template Design
+                <span class="label label-danger pull-right">70%</span>
+              </h4>
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <h4 class="control-sidebar-subheading">
+                Update Resume
+                <span class="label label-success pull-right">95%</span>
+              </h4>
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <h4 class="control-sidebar-subheading">
+                Laravel Integration
+                <span class="label label-warning pull-right">50%</span>
+              </h4>
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <h4 class="control-sidebar-subheading">
+                Back End Framework
+                <span class="label label-primary pull-right">68%</span>
+              </h4>
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!-- /.control-sidebar-menu -->
+
+      </div>
+      <!-- /.tab-pane -->
+      <!-- Stats tab content -->
+      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+      <!-- /.tab-pane -->
+      <!-- Settings tab content -->
+      <div class="tab-pane" id="control-sidebar-settings-tab">
+        <form method="post">
+          <h3 class="control-sidebar-heading">General Settings</h3>
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Report panel usage
+              <input type="checkbox" class="pull-right" checked>
+            </label>
+
+            <p>
+              Some information about this general settings option
+            </p>
+          </div>
+          <!-- /.form-group -->
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Allow mail redirect
+              <input type="checkbox" class="pull-right" checked>
+            </label>
+
+            <p>
+              Other sets of options are available
+            </p>
+          </div>
+          <!-- /.form-group -->
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Expose author name in posts
+              <input type="checkbox" class="pull-right" checked>
+            </label>
+
+            <p>
+              Allow the user to show his name in blog posts
+            </p>
+          </div>
+          <!-- /.form-group -->
+
+          <h3 class="control-sidebar-heading">Chat Settings</h3>
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Show me as online
+              <input type="checkbox" class="pull-right" checked>
+            </label>
+          </div>
+          <!-- /.form-group -->
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Turn off notifications
+              <input type="checkbox" class="pull-right">
+            </label>
+          </div>
+          <!-- /.form-group -->
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Delete chat history
+              <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+            </label>
+          </div>
+          <!-- /.form-group -->
+        </form>
+      </div>
+      <!-- /.tab-pane -->
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<% include ./../elements/script %>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
+
